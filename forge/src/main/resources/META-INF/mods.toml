@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[40,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "eomtweaks"
+version = "${version}"
+displayName = "EoMTweaks"
+authors = "To_Craft"
+description = '''
+Era of Magic - Tweaks
+'''
+#logoFile = ""
+
+[[dependencies.eomtweaks]]
+modId = "forge"
+mandatory = true
+versionRange = "[40,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.eomtweaks]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.eomtweaks]]
+modId = "craftedcore"
+mandatory = true
+versionRange = "[1.1,)"
+ordering = "AFTER"
+side = "BOTH"
