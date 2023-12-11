@@ -4,7 +4,7 @@ loaderVersion = "[40,)"
 license = "MIT"
 
 [[mods]]
-modId = "eomtweaks"
+modId = "eomtw"
 version = "${version}"
 displayName = "EoMTweaks"
 authors = "To_Craft"
@@ -13,21 +13,21 @@ Era of Magic - Tweaks
 '''
 #logoFile = ""
 
-[[dependencies.eomtweaks]]
+[[dependencies.eomtw]]
 modId = "forge"
 mandatory = true
 versionRange = "[40,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.eomtweaks]]
+[[dependencies.eomtw]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.18.2,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.eomtweaks]]
+[[dependencies.eomtw]]
 modId = "craftedcore"
 mandatory = true
 versionRange = "[1.1,)"
