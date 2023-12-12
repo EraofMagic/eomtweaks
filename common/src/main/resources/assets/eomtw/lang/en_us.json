@@ -1,9 +1,9 @@
 {
 	"eomtw.update": "A new version of EoM-Tweaks is available: %s",
-	"block.eomtw.deepslate_tin_ore": "Deepslate Tin Ore",
-	"block.eomtw.raw_tin_block": "Raw Tin Block",
-	"block.eomtw.tin_ore": "Tin Ore",
-	"item.eomtw.raw_tin": "Raw Tin",
+	"block.eomtw.deepslate_tin_ore": "Deepslate Casserite Ore",
+	"block.eomtw.raw_tin_block": "Raw Casserite Block",
+	"block.eomtw.tin_ore": "Casserite Ore",
+	"item.eomtw.raw_tin": "Raw Casserite",
 	"item.eomtw.tin_dust": "Tin Dust",
 	"item.eomtw.tin_nugget": "Tin Nugget",
 	"item.eomtw.tin_ingot": "Tin Ingot",
