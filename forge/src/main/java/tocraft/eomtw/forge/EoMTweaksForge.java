@@ -9,5 +9,6 @@ public class EoMTweaksForge {
 	public EoMTweaksForge() {
 		new EoMTweaks().initialize();
 		EoMRegistry.register();
+		OreRegistry.setup();
 	}
 }
