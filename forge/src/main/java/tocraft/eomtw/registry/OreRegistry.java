@@ -1,4 +1,4 @@
-package tocraft.eomtw.forge;
+package tocraft.eomtw.registry;
 
 import java.util.List;
 
@@ -17,7 +17,6 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
-import tocraft.eomtw.registry.EoMRegistry;
 
 import static net.minecraft.data.worldgen.features.OreFeatures.DEEPSLATE_ORE_REPLACEABLES;
 import static net.minecraft.data.worldgen.features.OreFeatures.STONE_ORE_REPLACEABLES;
