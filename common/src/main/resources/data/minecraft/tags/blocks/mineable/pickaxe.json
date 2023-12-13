@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "eomtw:tin_ore",
+    "eomtw:deepslate_tin_ore",
+    "eomtw:raw_tin_block",
+    "eomtw:tin_block"
+  ]
+}
