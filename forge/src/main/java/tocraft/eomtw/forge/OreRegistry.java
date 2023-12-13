@@ -17,7 +17,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import tocraft.eomtw.registry.EoMRegistry;
 
 import static net.minecraft.data.worldgen.features.OreFeatures.DEEPSLATE_ORE_REPLACEABLES;
 import static net.minecraft.data.worldgen.features.OreFeatures.STONE_ORE_REPLACEABLES;
@@ -32,7 +32,6 @@ public class OreRegistry {
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, OreRegistry::biomeLoadingEvent);
 	}
 	
-	@SubscribeEvent
 	public static final void biomeLoadingEvent(BiomeLoadingEvent event) {
 		event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatures.TIN_ORE_FEATURE);
 	}
