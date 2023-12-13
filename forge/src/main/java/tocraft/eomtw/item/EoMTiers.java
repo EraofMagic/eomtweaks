@@ -7,10 +7,9 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import tocraft.eomtw.registry.EoMRegistry;
 
-@SuppressWarnings("unused")
 public enum EoMTiers implements Tier {
 	TIN(2, 250, 6.0F, 2.0F, 14, () -> {
-		return Ingredient.of(EoMRegistry.I_TIN_INGOT.get());
+		return Ingredient.of(EoMRegistry.Items.TIN_INGOT.get());
 	});
 
 	private final int level;

@@ -26,17 +26,13 @@ public class OreRegistry {
 	private final static int TIN_ORE_AMOUNT = 10;
 	private final static int TIN_ORE_MIN_Y = -10;
 	private final static int TIN_ORE_MAX_Y = 40;
-	
-	public static void setup() {
-		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, OreRegistry::biomeLoadingEvent);
-	}
-	
+
 	public static final void biomeLoadingEvent(BiomeLoadingEvent event) {
 		event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, PlacedFeatures.TIN_ORE_FEATURE);
 	}
 	
 	public static final class ConfiguredFeatures {
-		public static final List<OreConfiguration.TargetBlockState> TIN_ORE_TARGET_LIST = List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, EoMRegistry.B_TIN_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, EoMRegistry.B_DEEPSLATE_TIN_ORE.get().defaultBlockState()));
+		public static final List<OreConfiguration.TargetBlockState> TIN_ORE_TARGET_LIST = List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, EoMRegistry.Blocks.TIN_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, EoMRegistry.Blocks.DEEPSLATE_TIN_ORE.get().defaultBlockState()));
 	    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> TIN_ORE_FEATURE = FeatureUtils.register("tin_ore", Feature.ORE,
 	            new OreConfiguration(TIN_ORE_TARGET_LIST, TIN_ORE_SIZE));
 	}
