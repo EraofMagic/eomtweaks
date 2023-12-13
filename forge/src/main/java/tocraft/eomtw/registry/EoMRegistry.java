@@ -1,4 +1,4 @@
-package tocraft.eomtw.forge;
+package tocraft.eomtw.registry;
 
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
@@ -23,11 +23,11 @@ import tocraft.eomtw.item.EoMTiers;
 
 public class EoMRegistry {
 	// Registries
-	private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, EoMTweaks.MODID);
-	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EoMTweaks.MODID);
+	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, EoMTweaks.MODID);
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EoMTweaks.MODID);
 
 	// Blocks
-	public static final RegistryObject<Block> B_TIN_ORE = BLOCKS.register("tin_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
+	public static final RegistryObject<Block> B_TIN_ORE = BLOCKS.register("tin_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE).strength(3.0F, 3.0F)));
 	public static final RegistryObject<Block> B_DEEPSLATE_TIN_ORE = BLOCKS.register("deepslate_tin_ore", () -> new OreBlock(BlockBehaviour.Properties.copy(B_TIN_ORE.get()).color(MaterialColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)));
 	public static final RegistryObject<Block> B_RAW_TIN_BLOCK = BLOCKS.register("raw_tin_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.RAW_IRON).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
 	public static final RegistryObject<Block> B_TIN_BLOCK = BLOCKS.register("tin_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
@@ -35,8 +35,9 @@ public class EoMRegistry {
 	// Items
 	public static final RegistryObject<Item> I_TIN_ORE = ITEMS.register("tin_ore", () -> new BlockItem(B_TIN_ORE.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> I_DEEPSLATE_TIN_ORE = ITEMS.register("deepslate_tin_ore", () -> new BlockItem(B_DEEPSLATE_TIN_ORE.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
-	public static final RegistryObject<Item> I_RAW_TIN = ITEMS.register("raw_tin", () -> new Item((new Item.Properties()).tab(CreativeModeTab.TAB_MATERIALS)));
+	public static final RegistryObject<Item> I_TIN_BLOCK = ITEMS.register("tin_block", () -> new BlockItem(B_TIN_BLOCK.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 	public static final RegistryObject<Item> I_RAW_TIN_BLOCK = ITEMS.register("raw_tin_block", () -> new BlockItem(B_RAW_TIN_BLOCK.get(), (new Item.Properties()).tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
+	public static final RegistryObject<Item> I_RAW_TIN = ITEMS.register("raw_tin", () -> new Item((new Item.Properties()).tab(CreativeModeTab.TAB_MATERIALS)));
 	public static final RegistryObject<Item> I_TIN_DUST = ITEMS.register("tin_dust", () -> new Item((new Item.Properties()).tab(CreativeModeTab.TAB_MATERIALS)));
 	public static final RegistryObject<Item> I_TIN_NUGGET = ITEMS.register("tin_nugget", () -> new Item((new Item.Properties()).tab(CreativeModeTab.TAB_MATERIALS)));
 	public static final RegistryObject<Item> I_TIN_INGOT = ITEMS.register("tin_ingot", () -> new Item((new Item.Properties()).tab(CreativeModeTab.TAB_MATERIALS)));

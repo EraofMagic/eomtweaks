@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
-import tocraft.eomtw.forge.EoMRegistry;
+import tocraft.eomtw.registry.EoMRegistry;
 
 @SuppressWarnings("unused")
 public enum EoMTiers implements Tier {
