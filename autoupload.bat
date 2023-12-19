@@ -3,8 +3,6 @@ set /p version=Please enter the version (needed for github, also check gradle.pr
 
 :: add mcversion here
 set mcversions="1.18.2"
-:: add loader here
-set modloader="forge"
 
 :: loops
 for %%m in (%mcversions%) DO (
@@ -12,11 +10,9 @@ for %%m in (%mcversions%) DO (
     gh release create "%version%-%%m" --generate-notes
 
     .\gradlew publish
-    for %%l in (%modloader%) DO (
         call .\gradlew %%l:build
-        .\gradlew %%l:curseforge
-        move "%%l\build\libs\eomtw-%version%-%%l.jar" "%%l\build\eomtw-%%m-%%l-%version%.jar"
+        .\gradlew curseforge
+        move "build\libs\eomtw-%version%-%%l.jar" "\build\eomtw-%%m-%%l-%version%.jar"
         rmdir /s /q "%%l\build\libs"
-        gh release upload "%version%-%%m" "%%l\build\eomtw-%%m-%%l-%version%.jar"
-    )
+        gh release upload "%version%-%%m" "build\eomtw-%%m-%version%.jar"
 )
