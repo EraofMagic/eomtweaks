@@ -1,78 +1,112 @@
 plugins {
-    id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.3-SNAPSHOT" apply false
+    id "dev.architectury.loom" version "1.3-SNAPSHOT"
+    id 'net.darkhax.curseforgegradle' version '1.1.18'
+    id "maven-publish"
 }
 
-architectury {
-    minecraft = rootProject.minecraft_version
+base {
+    archivesName = project.archives_base_name
 }
 
-subprojects {
-    apply plugin: "dev.architectury.loom"
-    apply plugin: "maven-publish"
+version = project.mod_version
+group = project.maven_group
 
-    loom {
-        silentMojangMappingsLicense()
+loom {
+    silentMojangMappingsLicense()
+
+    forge {
+        mixinConfigs = [ "eomtw.mixins.json" ]
     }
+}
 
-    dependencies {
-        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-        mappings loom.layered() {
+repositories {
+    // Add repositories to retrieve artifacts from in here.
+    // You should only use this when depending on other mods because
+    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+    // for more information about repositories.      
+    maven { url "https://maven.parchmentmc.org" }
+    maven {
+            name "tocraftMavenReleases"
+            url "https://tocraft.ddns.net/maven/releases"
+        }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.layered() {
             officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-${rootProject.minecraft_version}:${rootProject.parchmentmc_mappings}@zip")
+            parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchmentmc_mappings}@zip")
+        }
+
+    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    modApi "dev.tocraft:craftedcore:${project.minecraft_version}-forge-${project.craftedcore_version}"
+}
+
+processResources {
+    // define properties that can be used during resource processing
+    inputs.property "version", project.version
+
+    // this will replace the property "${version}" in your mods.toml
+    // with the version you've defined in your gradle.properties
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+    options.release = 17
+}
+
+java {
+    withSourcesJar()
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : project.archives_base_name,
+                "Specification-Vendor"    : project.archives_base_name,
+                "Specification-Version"   : project.mod_version,
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "1",
+                "Implementation-Vendor"   : "To_Craft",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = project.maven_group
+            artifactId = project.archives_base_name
+            version = project.minecraft_version + project.mod_version
+            from components.java
         }
     }
+    repositories {
+        maven {
+            name "tocraftMavenReleases"
+            url "https://tocraft.ddns.net/maven/releases"
 
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                groupId = rootProject.maven_group
-                artifactId = rootProject.archives_base_name
-                version = rootProject.minecraft_version + "-" + project.name + "-" + rootProject.mod_version
-                from components.java
-            }
-        }
-        repositories {
-            maven {
-                name "tocraftMavenReleases"
-                url "https://tocraft.ddns.net/maven/releases"
-
-                credentials {
-                    username = System.getenv("TOCRAFTMAVEN_USERNAME")
-                    password = System.getenv("TOCRAFTMAVEN_TOKEN")
-                }
+            credentials {
+                username = System.getenv("TOCRAFTMAVEN_USERNAME")
+                password = System.getenv("TOCRAFTMAVEN_TOKEN")
             }
         }
     }
 }
 
-allprojects {
-    apply plugin: "java"
-    apply plugin: "architectury-plugin"
-
-    archivesBaseName = rootProject.archives_base_name
-    version = rootProject.mod_version
-    group = rootProject.maven_group
-
-    repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.      
-        maven { url "https://maven.parchmentmc.org" }
-        maven {
-                name "tocraftMavenReleases"
-                url "https://tocraft.ddns.net/maven/releases"
-            }
-    }
-
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
-        options.release = 17
-    }
-
-    java {
-        withSourcesJar()
-    }
+task curseforge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+    apiToken = System.getenv("CURSEFORGE_TOKEN")
+    
+    // The main file to upload
+    def mainFile = upload(927399, remapJar)
+    mainFile.displayName = project.minecraft_version + "-" + project.name + "-" + project.mod_version
+    mainFile.releaseType = 'release'
+    mainFile.addModLoader(project.name)
+    mainFile.addRequirement("crafted-core")
+    mainFile.changelog = "https://github.com/ToCraft/potionabilities/releases/tag/" + project.mod_version + "-" + project.minecraft_version
 }

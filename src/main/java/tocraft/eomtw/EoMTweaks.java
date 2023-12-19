@@ -5,10 +5,17 @@ import org.slf4j.LoggerFactory;
 
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import tocraft.craftedcore.events.common.PlayerEvents;
 import tocraft.craftedcore.platform.Platform;
 import tocraft.craftedcore.platform.VersionChecker;
+import tocraft.eomtw.registry.EoMRegistry;
+import tocraft.eomtw.registry.OreRegistry;
 
+@Mod(EoMTweaks.MODID)
 public class EoMTweaks {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(EoMTweaks.class);
@@ -21,6 +28,11 @@ public class EoMTweaks {
 			if (newestVersion != null && !Platform.getMod(MODID).getVersion().equals(newestVersion))
 				player.displayClientMessage(new TranslatableComponent("eomtw.update", newestVersion), false);
 		});
+		
+		new EoMTweaks().initialize();
+		EoMRegistry.register(FMLJavaModLoadingContext.get().getModEventBus());
+		
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, OreRegistry::biomeLoadingEvent);
 	}
 
 	public static ResourceLocation id(String name) {
