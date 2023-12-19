@@ -1,5 +1,8 @@
 package tocraft.eomtw.registry;
 
+import static net.minecraft.data.worldgen.features.OreFeatures.DEEPSLATE_ORE_REPLACEABLES;
+import static net.minecraft.data.worldgen.features.OreFeatures.STONE_ORE_REPLACEABLES;
+
 import java.util.List;
 
 import net.minecraft.core.Holder;
@@ -14,12 +17,7 @@ import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-
-import static net.minecraft.data.worldgen.features.OreFeatures.DEEPSLATE_ORE_REPLACEABLES;
-import static net.minecraft.data.worldgen.features.OreFeatures.STONE_ORE_REPLACEABLES;
 
 public class OreRegistry {
 	private final static int TIN_ORE_SIZE = 10;
