@@ -20,7 +20,7 @@ public class EoMTweaks {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(EoMTweaks.class);
 	public static final String MODID = "eomtw";
-	public static String versionURL = "https://raw.githubusercontent.com/ToCraft/eomtweaks/1.18.2/gradle.properties";
+	public static String versionURL = "https://raw.githubusercontent.com/EraOfMagic/eomtweaks/1.18.2/gradle.properties";
 	
 	public EoMTweaks() {		
 		PlayerEvents.PLAYER_JOIN.register(player -> {
