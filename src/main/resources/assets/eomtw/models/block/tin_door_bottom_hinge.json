@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_rh",
+  "textures": {
+    "top": "eomtw:block/tin_door_top",
+    "bottom": "eomtw:block/tin_door_bottom"
+  }
+}
