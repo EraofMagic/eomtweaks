@@ -7,8 +7,3 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-
-include("common")
-include("forge")
-
-rootProject.name = "eomtw"

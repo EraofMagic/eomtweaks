@@ -1,6 +1,5 @@
 [![Build-1.18.2](https://github.com/ToCraft/eomtweaks/actions/workflows/gradle-1.18.2.yml/badge.svg)](https://github.com/ToCraft/potionabilities/actions/workflows/gradle-1.18.2.yml)
-![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Ftocraft.ddns.net%2Fmaven%2Freleases%2Fdev%2Ftocraft%2Feomtw%2Fmaven-metadata.xml&versionPrefix=1.18.2-common&label=EoMTweaks)
-![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Ftocraft.ddns.net%2Fmaven%2Freleases%2Fdev%2Ftocraft%2Feomtw%2Fmaven-metadata.xml&versionPrefix=1.18.2-forge&label=EoMTweaks)
+![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Ftocraft.ddns.net%2Fmaven%2Freleases%2Fdev%2Ftocraft%2Feomtw%2Fmaven-metadata.xml&versionPrefix=1.18.2&label=EoMTweaks)
 
 # PotionAbilities
 

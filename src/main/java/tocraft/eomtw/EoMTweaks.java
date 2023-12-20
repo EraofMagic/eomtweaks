@@ -22,14 +22,13 @@ public class EoMTweaks {
 	public static final String MODID = "eomtw";
 	public static String versionURL = "https://raw.githubusercontent.com/ToCraft/eomtweaks/1.18.2/gradle.properties";
 	
-	public void initialize() {		
+	public EoMTweaks() {		
 		PlayerEvents.PLAYER_JOIN.register(player -> {
 			String newestVersion = VersionChecker.checkForNewVersion(versionURL);
 			if (newestVersion != null && !Platform.getMod(MODID).getVersion().equals(newestVersion))
 				player.displayClientMessage(new TranslatableComponent("eomtw.update", newestVersion), false);
 		});
 		
-		new EoMTweaks().initialize();
 		EoMRegistry.register(FMLJavaModLoadingContext.get().getModEventBus());
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, OreRegistry::biomeLoadingEvent);
