@@ -15,7 +15,7 @@ loom {
     silentMojangMappingsLicense()
 
     forge {
-        mixinConfigs = [ "eomtw.mixins.json" ]
+        mixinConfigs = ["eomtw.mixins.json"]
     }
 }
 
@@ -27,17 +27,17 @@ repositories {
     // for more information about repositories.      
     maven { url "https://maven.parchmentmc.org" }
     maven {
-            name "tocraftMavenReleases"
-            url "https://tocraft.ddns.net/maven/releases"
-        }
+        name "tocraftMavenReleases"
+        url "https://tocraft.ddns.net/maven/releases"
+    }
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.layered() {
-            officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchmentmc_mappings}@zip")
-        }
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchmentmc_mappings}@zip")
+    }
 
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     modApi "dev.tocraft:craftedcore:${project.minecraft_version}-forge-${project.craftedcore_version}"
@@ -101,7 +101,7 @@ publishing {
 
 task curseforge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
     apiToken = System.getenv("CURSEFORGE_TOKEN")
-    
+
     // The main file to upload
     def mainFile = upload(927399, remapJar)
     mainFile.displayName = project.minecraft_version + "-" + project.name + "-" + project.mod_version
