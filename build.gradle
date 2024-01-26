@@ -26,10 +26,10 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.      
     maven { url "https://maven.parchmentmc.org" }
-    maven {
-        name "tocraftMavenReleases"
-        url "https://tocraft.ddns.net/maven/releases"
-    }
+        maven {
+            name = "tocraftMavenPublic"
+            url "https://maven.tocraft.dev/public"
+        }
 }
 
 dependencies {
@@ -40,7 +40,7 @@ dependencies {
     }
 
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
-    modApi "dev.tocraft:craftedcore:${project.minecraft_version}-forge-${project.craftedcore_version}"
+    modApi "dev.tocraft:craftedcore-forge:${project.minecraft_version}-${project.craftedcore_version}"
 }
 
 processResources {
@@ -88,12 +88,12 @@ publishing {
     }
     repositories {
         maven {
-            name "tocraftMavenReleases"
-            url "https://tocraft.ddns.net/maven/releases"
+            name = "tocraftMavenPublic"
+            url "https://maven.tocraft.dev/public"
 
             credentials {
-                username = System.getenv("TOCRAFTMAVEN_USERNAME")
-                password = System.getenv("TOCRAFTMAVEN_TOKEN")
+                username = System.getenv("tocraft")
+                password = System.getenv("MAVEN_PASS")
             }
         }
     }

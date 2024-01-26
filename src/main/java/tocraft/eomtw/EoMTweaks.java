@@ -1,5 +1,8 @@
 package tocraft.eomtw;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -13,10 +16,13 @@ import tocraft.eomtw.registry.OreRegistry;
 public class EoMTweaks {
 
     public static final String MODID = "eomtw";
-    public static String versionURL = "https://raw.githubusercontent.com/EraOfMagic/eomtweaks/1.18.2/gradle.properties";
+    private static final String MAVEN_URL = "https://maven.tocraft.dev/public/dev/tocraft/eomtw/maven-metadata.xml";
 
     public EoMTweaks() {
-        VersionChecker.registerChecker(MODID, versionURL, new TextComponent("EoMTweaks"));
+        try {
+            VersionChecker.registerMavenChecker(MODID, new URL(MAVEN_URL), new TextComponent("EoMTweaks"));
+        } catch (MalformedURLException ignored) {
+        }
         EoMRegistry.register(FMLJavaModLoadingContext.get().getModEventBus());
         MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, OreRegistry::biomeLoadingEvent);
     }
