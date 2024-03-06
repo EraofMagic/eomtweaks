@@ -58,6 +58,7 @@ public class EoMRegistry {
         public static final RegistryObject<Item> FIRE_BRICK = ITEMS.register("fire_brick", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
         public static final RegistryObject<Item> UNFIRED_FIRE_BRICK = ITEMS.register("unfired_fire_brick", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
         public static final RegistryObject<Item> UNFIRED_COKE_BRICK = ITEMS.register("unfired_coke_brick", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
+        public static final RegistryObject<Item> FIRED_COKE_BRICK = ITEMS.register("fired_coke_brick", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
         public static final RegistryObject<Item> UNFIRED_SEARED_BRICK = ITEMS.register("unfired_seared_brick", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
         public static void register(IEventBus eventBus) {
             ITEMS.register(eventBus);
