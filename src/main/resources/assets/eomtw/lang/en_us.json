@@ -14,5 +14,9 @@
   "item.eomtw.tin_shovel": "Tin Shovel",
   "item.eomtw.tin_pickaxe": "Tin Pickaxe",
   "item.eomtw.tin_axe": "Tin Axe",
-  "item.eomtw.tin_hoe": "Tin Hoe"
+  "item.eomtw.tin_hoe": "Tin Hoe",
+  "item.eomtw.fire_brick": "Firebrick",
+  "item.eomtw.unfired_fire_brick": "Unfired Fire Brick",
+  "item.eomtw.unfired_coke_brick": "Unfired Coke Brick",
+  "item.eomtw.unfired_seared_brick": "Unfired Seared Brick"
 }
