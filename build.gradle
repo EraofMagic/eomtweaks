@@ -79,21 +79,22 @@ jar {
 
 publishing {
     publications {
-        maven(MavenPublication) {
-            groupId = project.maven_group
-            artifactId = project.archives_base_name
-            version = project.minecraft_version + project.mod_version
+        mavenForge(MavenPublication) {
+            artifactId = rootProject.archivesBaseName + "-$project.name"
+            version = rootProject.minecraft_version + "-" + rootProject.mod_version
             from components.java
         }
     }
     repositories {
-        maven {
-            name = "tocraftMavenPublic"
-            url "https://maven.tocraft.dev/public"
+        if (System.getenv("MAVEN_PASS") != null) {
+            maven {
+                name = "tocraftMavenPublic"
+                url "https://maven.tocraft.dev/public"
 
-            credentials {
-                username = System.getenv("tocraft")
-                password = System.getenv("MAVEN_PASS")
+                credentials {
+                    username = "tocraft"
+                    password = System.getenv("MAVEN_PASS")
+                }
             }
         }
     }
