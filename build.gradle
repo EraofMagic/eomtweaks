@@ -108,5 +108,5 @@ task curseforge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
     mainFile.releaseType = 'release'
     mainFile.addModLoader(project.name)
     mainFile.addRequirement("crafted-core")
-    mainFile.changelog = "https://github.com/ToCraft/potionabilities/releases/tag/" + project.mod_version + "-" + project.minecraft_version
+    mainFile.changelog = "https://github.com/EraofMagic/eomtweaks/releases/tag/" + project.mod_version + "-" + project.minecraft_version
 }
