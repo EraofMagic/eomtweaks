@@ -1,10 +1,9 @@
-[![Build-1.18.2](https://github.com/ToCraft/eomtweaks/actions/workflows/gradle-1.18.2.yml/badge.svg)](https://github.com/ToCraft/potionabilities/actions/workflows/gradle-1.18.2.yml)
+[![Build-1.18.2](https://github.com/EraofMagic/eomtweaks/actions/workflows/gradle-1.18.2.yml/badge.svg)](https://github.com/EraofMagic/eomtweaks/actions/workflows/gradle-1.18.2.yml)
 ![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Ftmaven.ocraft.dev%2Fpublic%2Freleases%2Fdev%2Ftocraft%2Feomtw%2Fmaven-metadata.xml&versionPrefix=1.18.2&label=EoMTweaks)
 
-# PotionAbilities
+# EoMTweaks
 
-*PotionAbilities* is a very basic magic mod, which tries to integrate into vanilla and therefore uses
-vanilla-potion-effects as magical abilities.
+*EoMTweaks* is a companion mod for <strong>Era of Magica</strong>, which adds some new compatibilities and features for existing mods.
 
 ## Download
 
@@ -12,7 +11,7 @@ vanilla-potion-effects as magical abilities.
 
 ---
 
-**PotionAbilities Requires CraftedCore**
+**EoMTweaks Requires CraftedCore**
 
 [CraftedCore (CurseForge)](https://www.curseforge.com/minecraft/mc-mods/crafted-core)
 
@@ -20,26 +19,6 @@ vanilla-potion-effects as magical abilities.
 
 ---
 
-### You can do magic!
-
-This mod allows you to unlock a random potion effects, you can apply on yourself or a nearby mob every time you want!
-
-## Getting Started
-
-Search for a jungle temple (editable in the config). Once you found it, swin in water next to the temple (distance
-editable in the config).
-You'll know that it worked, once you get blindness and confusion.
-Now, you've got a random potion-ability, which you can use by pressing 'R'.
-If you look at an entity while pressing the key, the effects will be aplied to the entity, otherwise to you.
-On the left-down corner, you'll see a potion. Once it disappeared, you can re-use your potion-ability.
-
-### Changes if the woodwalkers-mod is installed
-
-If my [woodwalkers-mod](https://www.curseforge.com/minecraft/mc-mods/woodwalkers) is found, you're only able to unlock a
-potion-ability, if you're shaped as a normal player but still enabled an entity as second Shape, that also applies for
-using potion-abilities. Furthermore, If you're shape-ability is on cooldown, you can't use your potion-ability and vice
-versa.
-
 ## License
 
-PotionAbilities is licensed under LGPL-3.0 license. 
+EoMTweaks is licensed under LGPL-3.0 license. 
