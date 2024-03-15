@@ -20,5 +20,9 @@
   "item.eomtw.unfired_coke_brick": "Unfired Coke Brick",
   "item.eomtw.unfired_seared_brick": "Unfired Seared Brick",
   "item.eomtw.fired_coke_brick": "Coke Brick",
-  "item.eomtw.brick_pattern": "Brick Pattern"
+  "item.eomtw.brick_pattern": "Brick Pattern",
+  "item.eomtw.gypsum_dust": "Gypsum Dust",
+  "item.eomtw.calcite_dust": "Calcite Dust",
+  "item.eomtw.stone_dust": "Stone Dust",
+  "item.eomtw.brick_dust": "Brick Dust"
 }
