@@ -17,9 +17,9 @@ public class sawDustTagGenerator {
 
     public static void generate()  {
         File dir = new File(Minecraft.getInstance().gameDirectory.getPath(),"eomDumps");
-        if (!dir.exists()) {
+        if (!dir.exists())
             dir.mkdirs();
-        }
+
         File file = new File(dir, "itemNameDump.txt");
         file.delete();
         try {
