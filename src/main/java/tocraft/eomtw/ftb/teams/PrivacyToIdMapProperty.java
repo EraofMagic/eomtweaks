@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import dev.ftb.mods.ftbteams.data.PrivacyMode;
 import dev.ftb.mods.ftbteams.property.TeamProperty;
 import dev.ftb.mods.ftbteams.property.TeamPropertyType;
 import net.minecraft.network.FriendlyByteBuf;
@@ -12,29 +13,29 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.*;
 
 @SuppressWarnings("unused")
-public class StringToIdMapProperty extends TeamProperty<Map<String, List<ResourceLocation>>> {
-    public static final TeamPropertyType<Map<String, List<ResourceLocation>>> STRING_TO_ID_MAP = TeamPropertyType.register("string_to_id_list_map", StringToIdMapProperty::new);
+public class PrivacyToIdMapProperty extends TeamProperty<Map<PrivacyMode, List<ResourceLocation>>> {
+    public static final TeamPropertyType<Map<PrivacyMode, List<ResourceLocation>>> PRIVACY_TO_ID_MAP = TeamPropertyType.register("privacy_to_id_list_map", PrivacyToIdMapProperty::new);
 
-    public StringToIdMapProperty(ResourceLocation id, Map<String, List<ResourceLocation>> def) {
+    public PrivacyToIdMapProperty(ResourceLocation id, Map<PrivacyMode, List<ResourceLocation>> def) {
         super(id, def);
     }
 
-    public StringToIdMapProperty(ResourceLocation id, FriendlyByteBuf buf) {
+    public PrivacyToIdMapProperty(ResourceLocation id, FriendlyByteBuf buf) {
         this(id, fromJson(JsonParser.parseString(buf.readUtf())).orElseThrow());
     }
 
     @Override
-    public TeamPropertyType<Map<String, List<ResourceLocation>>> getType() {
-        return STRING_TO_ID_MAP;
+    public TeamPropertyType<Map<PrivacyMode, List<ResourceLocation>>> getType() {
+        return PRIVACY_TO_ID_MAP;
     }
 
     @Override
-    public Optional<Map<String, List<ResourceLocation>>> fromString(String string) {
+    public Optional<Map<PrivacyMode, List<ResourceLocation>>> fromString(String string) {
         return fromJson(JsonParser.parseString(string));
     }
 
-    private static Optional<Map<String, List<ResourceLocation>>> fromJson(JsonElement json) {
-        Map<String, List<ResourceLocation>> map = new HashMap<>();
+    private static Optional<Map<PrivacyMode, List<ResourceLocation>>> fromJson(JsonElement json) {
+        Map<PrivacyMode, List<ResourceLocation>> map = new HashMap<>();
         if (json.isJsonObject()) {
             for (Map.Entry<String, JsonElement> entry : json.getAsJsonObject().entrySet()) {
                 if (entry.getValue().isJsonArray()) {
@@ -42,7 +43,7 @@ public class StringToIdMapProperty extends TeamProperty<Map<String, List<Resourc
                     for (JsonElement jsonElement : entry.getValue().getAsJsonArray()) {
                         list.add(new ResourceLocation(jsonElement.getAsString()));
                     }
-                    map.put(entry.getKey(), list);
+                    map.put(PrivacyMode.valueOf(entry.getKey()), list);
                 }
             }
         }
@@ -53,12 +54,12 @@ public class StringToIdMapProperty extends TeamProperty<Map<String, List<Resourc
     @Override
     public void write(FriendlyByteBuf buf) {
         JsonObject map = new JsonObject();
-        for (Map.Entry<String, List<ResourceLocation>> entry : defaultValue.entrySet()) {
+        for (Map.Entry<PrivacyMode, List<ResourceLocation>> entry : defaultValue.entrySet()) {
             JsonArray list = new JsonArray();
             for (ResourceLocation resourceLocation : entry.getValue()) {
                 list.add(resourceLocation.toString());
             }
-            map.add(entry.getKey(), list);
+            map.add(entry.getKey().name(), list);
         }
         buf.writeUtf(map.toString());
     }

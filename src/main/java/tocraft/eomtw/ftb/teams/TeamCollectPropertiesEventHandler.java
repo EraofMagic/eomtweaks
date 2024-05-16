@@ -7,6 +7,11 @@ import java.util.function.Consumer;
 public class TeamCollectPropertiesEventHandler implements Consumer<TeamCollectPropertiesEvent> {
     @Override
     public void accept(TeamCollectPropertiesEvent event) {
-        //event.add(StringToIdMapProperty.STRING_TO_ID_MAP);
+        event.add(EoMTeamProperties.DESTROY_BLOCKS_BLACKLIST);
+        event.add(EoMTeamProperties.DESTROY_BLOCKS_WHITELIST);
+        event.add(EoMTeamProperties.INTERACT_BLOCKS_BLACKLIST);
+        event.add(EoMTeamProperties.INTERACT_BLOCKS_WHITELIST);
+        event.add(EoMTeamProperties.INTERACT_ENTITIES_BLACKLIST);
+        event.add(EoMTeamProperties.INTERACT_ENTITIES_WHITELIST);
     }
 }

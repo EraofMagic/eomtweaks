@@ -2,6 +2,7 @@ package tocraft.eomtw;
 
 import dev.ftb.mods.ftbteams.event.TeamEvent;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModList;
@@ -34,5 +35,9 @@ public class EoMTweaks {
             CommandEvents.REGISTRATION.register(new FTBTeamsExtraCommands());
             TeamEvent.COLLECT_PROPERTIES.register(new TeamCollectPropertiesEventHandler());
         }
+    }
+
+    public static ResourceLocation id(String id) {
+        return new ResourceLocation(MODID, id);
     }
 }
