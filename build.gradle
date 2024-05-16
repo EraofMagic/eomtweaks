@@ -47,6 +47,8 @@ dependencies {
     modApi "dev.tocraft:craftedcore-forge:${project.minecraft_version}-${project.craftedcore_version}"
     modApi "curse.maven:ftb-chunks-forge-314906:4494633"
     modApi "curse.maven:ftb-teams-forge-404468:4579981"
+
+    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 }
 
 processResources {

@@ -12,20 +12,20 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.*;
 
 @SuppressWarnings("unused")
-public class StringToIdMapListProperty extends TeamProperty<Map<String, List<ResourceLocation>>> {
-    public static final TeamPropertyType<Map<String, List<ResourceLocation>>> STRING_TO_ID_MAP_LIST = TeamPropertyType.register("string_to_id_list_map", StringToIdMapListProperty::new);
+public class StringToIdMapProperty extends TeamProperty<Map<String, List<ResourceLocation>>> {
+    public static final TeamPropertyType<Map<String, List<ResourceLocation>>> STRING_TO_ID_MAP = TeamPropertyType.register("string_to_id_list_map", StringToIdMapProperty::new);
 
-    public StringToIdMapListProperty(ResourceLocation id, Map<String, List<ResourceLocation>> def) {
+    public StringToIdMapProperty(ResourceLocation id, Map<String, List<ResourceLocation>> def) {
         super(id, def);
     }
 
-    public StringToIdMapListProperty(ResourceLocation id, FriendlyByteBuf buf) {
+    public StringToIdMapProperty(ResourceLocation id, FriendlyByteBuf buf) {
         this(id, fromJson(JsonParser.parseString(buf.readUtf())).orElseThrow());
     }
 
     @Override
     public TeamPropertyType<Map<String, List<ResourceLocation>>> getType() {
-        return STRING_TO_ID_MAP_LIST;
+        return STRING_TO_ID_MAP;
     }
 
     @Override

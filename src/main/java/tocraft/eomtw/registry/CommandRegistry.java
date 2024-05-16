@@ -13,6 +13,8 @@ public class CommandRegistry {
     public static void onCommandsRegister(RegisterCommandsEvent event) {
         new eomDump(event.getDispatcher());
 
+        // TODO: replace with CommandEvents.REGISTRATION
+
         ConfigCommand.register(event.getDispatcher());
     }
 }
