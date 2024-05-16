@@ -1,5 +1,12 @@
 {
   "eomtw.update": "A new version of EoM-Tweaks is available: %s",
+  "ftbteamsconfig.eomtw": "Advanced EoM Team Properties",
+  "ftbteamsconfig.eomtw.break_blocks_blacklist": "Break Blocks Blacklist",
+  "ftbteamsconfig.eomtw.break_blocks_whitelist": "Break Blocks Whitelist",
+  "ftbteamsconfig.eomtw.interact_blocks_blacklist": "Interact Blocks Blacklist",
+  "ftbteamsconfig.eomtw.interact_blocks_whitelist": "Interact Blocks Whitelist",
+  "ftbteamsconfig.eomtw.interact_entities_blacklist": "Interact Entities Blacklist",
+  "ftbteamsconfig.eomtw.interact_entities_whitelist": "Interact Entities Whitelist",
   "block.eomtw.deepslate_tin_ore": "Deepslate Casserite Ore",
   "block.eomtw.raw_tin_block": "Raw Casserite Block",
   "block.eomtw.tin_ore": "Casserite Ore",

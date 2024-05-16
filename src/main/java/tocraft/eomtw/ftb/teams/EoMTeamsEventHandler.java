@@ -33,8 +33,8 @@ public class EoMTeamsEventHandler {
     }
 
     private static void teamCollectPropertiesEvent(TeamCollectPropertiesEvent event) {
-        event.add(EoMTeamProperties.DESTROY_BLOCKS_BLACKLIST);
-        event.add(EoMTeamProperties.DESTROY_BLOCKS_WHITELIST);
+        event.add(EoMTeamProperties.BREAK_BLOCKS_BLACKLIST);
+        event.add(EoMTeamProperties.BREAK_BLOCKS_WHITELIST);
         event.add(EoMTeamProperties.INTERACT_BLOCKS_BLACKLIST);
         event.add(EoMTeamProperties.INTERACT_BLOCKS_WHITELIST);
         event.add(EoMTeamProperties.INTERACT_ENTITIES_BLACKLIST);
@@ -57,7 +57,7 @@ public class EoMTeamsEventHandler {
     }
 
     public static EventResult blockLeftClick(Player player, InteractionHand hand, BlockPos pos, Direction face) {
-        if (player instanceof ServerPlayer && FTBChunksAPI.getManager().protect(player, hand, pos, EoMProtections.ADVANCED_DESTROY_BLOCK, null)) {
+        if (player instanceof ServerPlayer && FTBChunksAPI.getManager().protect(player, hand, pos, EoMProtections.ADVANCED_BREAK_BLOCK, null)) {
             return EventResult.interruptFalse();
         }
 

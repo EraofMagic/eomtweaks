@@ -1,5 +1,6 @@
 package tocraft.eomtw.ftb.teams;
 
+import com.mojang.logging.LogUtils;
 import dev.ftb.mods.ftbchunks.data.FTBChunksAPI;
 import dev.ftb.mods.ftbchunks.data.FTBChunksTeamData;
 import dev.ftb.mods.ftbchunks.data.Protection;
@@ -11,10 +12,12 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public final class EoMProtections {
-    public static final Protection ADVANCED_DESTROY_BLOCK = (player, pos, hand, chunk, entity) -> {
+    public static final Protection ADVANCED_BREAK_BLOCK = (player, pos, hand, chunk, entity) -> {
         BlockState blockState = player.level.getBlockState(pos);
 
         if (blockState.is(FTBChunksAPI.EDIT_WHITELIST_TAG)) {
@@ -22,8 +25,8 @@ public final class EoMProtections {
         }
 
         if (chunk != null) {
-            List<ResourceLocation> whiteList = getIdList(player, chunk.getTeamData(), EoMTeamProperties.DESTROY_BLOCKS_WHITELIST);
-            List<ResourceLocation> blackList = getIdList(player, chunk.getTeamData(), EoMTeamProperties.DESTROY_BLOCKS_BLACKLIST);
+            List<ResourceLocation> whiteList = getIdList(player, chunk.getTeamData(), EoMTeamProperties.BREAK_BLOCKS_WHITELIST);
+            List<ResourceLocation> blackList = getIdList(player, chunk.getTeamData(), EoMTeamProperties.BREAK_BLOCKS_BLACKLIST);
             return canUse(whiteList, blackList, ForgeRegistries.BLOCKS.getKey(blockState.getBlock()));
         }
 
@@ -40,7 +43,7 @@ public final class EoMProtections {
         if (chunk != null) {
             List<ResourceLocation> whiteList = getIdList(player, chunk.getTeamData(), EoMTeamProperties.INTERACT_BLOCKS_WHITELIST);
             List<ResourceLocation> blackList = getIdList(player, chunk.getTeamData(), EoMTeamProperties.INTERACT_BLOCKS_BLACKLIST);
-            return canUse(whiteList, blackList, ForgeRegistries.BLOCKS.getKey(blockState.getBlock()));
+            return canUse(whiteList, blackList, Objects.requireNonNull(blockState.getBlock().getRegistryName()));
         }
 
         return ProtectionOverride.CHECK;
@@ -63,9 +66,12 @@ public final class EoMProtections {
     };
 
     public static ProtectionOverride canUse(List<ResourceLocation> whiteList, List<ResourceLocation> blackList, ResourceLocation idToBeChecked) {
+        LogUtils.getLogger().warn(idToBeChecked.toString());
         if (blackList.contains(idToBeChecked)) {
             return ProtectionOverride.DENY;
         } else if (whiteList.contains(idToBeChecked) && !blackList.contains(idToBeChecked)) {
+            return ProtectionOverride.ALLOW;
+        } else if (whiteList.isEmpty()) {
             return ProtectionOverride.ALLOW;
         } else {
             return ProtectionOverride.CHECK;
@@ -73,12 +79,15 @@ public final class EoMProtections {
     }
 
     public static List<ResourceLocation> getIdList(ServerPlayer p, FTBChunksTeamData teamData, PrivacyToIdMapProperty property) {
+        List<ResourceLocation> list;
         if (teamData.isTeamMember(p.getUUID())) {
-            return teamData.getTeam().getProperty(property).get(PrivacyMode.PRIVATE);
+            list = teamData.getTeam().getProperty(property).get(PrivacyMode.PRIVATE);
         } else if (teamData.isAlly(p.getUUID())) {
-            return teamData.getTeam().getProperty(property).get(PrivacyMode.ALLIES);
+            list = teamData.getTeam().getProperty(property).get(PrivacyMode.ALLIES);
         } else {
-            return teamData.getTeam().getProperty(property).get(PrivacyMode.PUBLIC);
+            list = teamData.getTeam().getProperty(property).get(PrivacyMode.PUBLIC);
         }
+
+        return list != null ? list : new ArrayList<>();
     }
 }

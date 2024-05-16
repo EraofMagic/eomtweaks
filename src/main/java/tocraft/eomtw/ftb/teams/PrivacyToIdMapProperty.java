@@ -1,12 +1,11 @@
 package tocraft.eomtw.ftb.teams;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
+import dev.ftb.mods.ftblibrary.config.ConfigGroup;
 import dev.ftb.mods.ftbteams.data.PrivacyMode;
 import dev.ftb.mods.ftbteams.property.TeamProperty;
 import dev.ftb.mods.ftbteams.property.TeamPropertyType;
+import dev.ftb.mods.ftbteams.property.TeamPropertyValue;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 
@@ -21,7 +20,7 @@ public class PrivacyToIdMapProperty extends TeamProperty<Map<PrivacyMode, List<R
     }
 
     public PrivacyToIdMapProperty(ResourceLocation id, FriendlyByteBuf buf) {
-        this(id, fromJson(JsonParser.parseString(buf.readUtf())).orElseThrow());
+        this(id, fromJson(JsonParser.parseString(buf.readUtf())));
     }
 
     @Override
@@ -31,36 +30,58 @@ public class PrivacyToIdMapProperty extends TeamProperty<Map<PrivacyMode, List<R
 
     @Override
     public Optional<Map<PrivacyMode, List<ResourceLocation>>> fromString(String string) {
-        return fromJson(JsonParser.parseString(string));
+        try {
+            Map<PrivacyMode, List<ResourceLocation>> map = new HashMap<>(fromJson(JsonParser.parseString(string)));
+            return map.isEmpty() ? Optional.empty() : Optional.of(map);
+        } catch (JsonParseException e) {
+            return Optional.empty();
+        }
     }
 
-    private static Optional<Map<PrivacyMode, List<ResourceLocation>>> fromJson(JsonElement json) {
+    private static Map<PrivacyMode, List<ResourceLocation>> fromJson(JsonElement json) {
         Map<PrivacyMode, List<ResourceLocation>> map = new HashMap<>();
         if (json.isJsonObject()) {
             for (Map.Entry<String, JsonElement> entry : json.getAsJsonObject().entrySet()) {
                 if (entry.getValue().isJsonArray()) {
-                    List<ResourceLocation> list = new ArrayList<>();
-                    for (JsonElement jsonElement : entry.getValue().getAsJsonArray()) {
-                        list.add(new ResourceLocation(jsonElement.getAsString()));
+                    try {
+                        List<ResourceLocation> list = new ArrayList<>();
+                        for (JsonElement jsonElement : entry.getValue().getAsJsonArray()) {
+                            list.add(new ResourceLocation(jsonElement.getAsString()));
+                        }
+                        map.put(PrivacyMode.NAME_MAP.get(entry.getKey().toLowerCase()), list);
+                    } catch (Exception ignored) {
                     }
-                    map.put(PrivacyMode.valueOf(entry.getKey()), list);
                 }
             }
         }
 
-        return map.isEmpty() ? Optional.empty() : Optional.of(map);
+        return map;
+    }
+
+    private static JsonElement toJson(Map<PrivacyMode, List<ResourceLocation>> map) {
+        JsonObject json = new JsonObject();
+        map.forEach((k, v) -> {
+            JsonArray array = new JsonArray();
+            v.forEach(k2 -> array.add(k2.toString()));
+            json.add(k.name(), array);
+        });
+
+        return json;
     }
 
     @Override
     public void write(FriendlyByteBuf buf) {
-        JsonObject map = new JsonObject();
-        for (Map.Entry<PrivacyMode, List<ResourceLocation>> entry : defaultValue.entrySet()) {
-            JsonArray list = new JsonArray();
-            for (ResourceLocation resourceLocation : entry.getValue()) {
-                list.add(resourceLocation.toString());
-            }
-            map.add(entry.getKey().name(), list);
-        }
-        buf.writeUtf(map.toString());
+        buf.writeUtf(toJson(defaultValue).toString());
+    }
+
+    @Override
+    public String toString(Map<PrivacyMode, List<ResourceLocation>> map) {
+        return toJson(map).toString();
+    }
+
+    // TODO: Replace with fresh custom menu
+    @Override
+    public void config(ConfigGroup config, TeamPropertyValue<Map<PrivacyMode, List<ResourceLocation>>> value) {
+        config.addString(id.getPath(), toString(value.value), s -> value.value = fromString(s).orElse(new HashMap<>()), toString(defaultValue));
     }
 }
