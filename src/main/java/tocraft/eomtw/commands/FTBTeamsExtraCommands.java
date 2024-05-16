@@ -5,15 +5,15 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import dev.architectury.event.events.common.CommandRegistrationEvent;
 import dev.ftb.mods.ftbteams.data.Team;
 import dev.ftb.mods.ftbteams.data.TeamArgument;
 import dev.ftb.mods.ftbteams.data.TeamArgumentProvider;
 import dev.ftb.mods.ftbteams.property.TeamPropertyArgument;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import tocraft.craftedcore.event.common.CommandEvents;
 
-public class FTBTeamsExtraCommands implements CommandRegistrationEvent {
+public class FTBTeamsExtraCommands implements CommandEvents.CommandRegistration {
     private RequiredArgumentBuilder<CommandSourceStack, TeamArgumentProvider> teamArg() {
         return Commands.argument("team", TeamArgument.create());
     }

@@ -1,12 +1,12 @@
 package tocraft.eomtw;
 
-import dev.architectury.event.events.common.CommandRegistrationEvent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import tocraft.craftedcore.event.common.CommandEvents;
 import tocraft.craftedcore.platform.VersionChecker;
 import tocraft.eomtw.commands.FTBTeamsExtraCommands;
 import tocraft.eomtw.registry.EoMRegistry;
@@ -29,7 +29,7 @@ public class EoMTweaks {
         MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, OreRegistry::biomeLoadingEvent);
 
         if (ModList.get().isLoaded("ftbteams")) {
-            CommandRegistrationEvent.EVENT.register(new FTBTeamsExtraCommands());
+            CommandEvents.REGISTRATION.register(new FTBTeamsExtraCommands());
         }
     }
 
