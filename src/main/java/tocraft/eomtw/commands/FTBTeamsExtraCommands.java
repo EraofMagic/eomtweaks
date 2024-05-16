@@ -1,4 +1,4 @@
-package tocraft.eomtw.commands;
+/*package tocraft.eomtw.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -38,3 +38,4 @@ public class FTBTeamsExtraCommands implements CommandRegistrationEvent {
                         })));
     }
 }
+*/
