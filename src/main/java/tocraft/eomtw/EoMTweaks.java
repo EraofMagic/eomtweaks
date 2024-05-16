@@ -1,6 +1,5 @@
 package tocraft.eomtw;
 
-import dev.ftb.mods.ftbteams.event.TeamEvent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -11,7 +10,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import tocraft.craftedcore.event.common.CommandEvents;
 import tocraft.craftedcore.platform.VersionChecker;
 import tocraft.eomtw.commands.FTBTeamsExtraCommands;
-import tocraft.eomtw.ftb.teams.TeamCollectPropertiesEventHandler;
+import tocraft.eomtw.ftb.teams.EoMTeamsEventHandler;
 import tocraft.eomtw.registry.EoMRegistry;
 import tocraft.eomtw.registry.OreRegistry;
 
@@ -33,7 +32,7 @@ public class EoMTweaks {
 
         if (ModList.get().isLoaded("ftbteams")) {
             CommandEvents.REGISTRATION.register(new FTBTeamsExtraCommands());
-            TeamEvent.COLLECT_PROPERTIES.register(new TeamCollectPropertiesEventHandler());
+            EoMTeamsEventHandler.initialize();
         }
     }
 
