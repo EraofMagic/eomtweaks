@@ -66,6 +66,7 @@ public class EoMRegistry {
         public static final RegistryObject<Item> STONE_DUST = ITEMS.register("stone_dust", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
         public static final RegistryObject<Item> BRICK_DUST = ITEMS.register("brick_dust", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
         public static final RegistryObject<Item> QUARTZ_DUST = ITEMS.register("quartz_dust", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)));
+        public static final RegistryObject<Item> WASH_PAN = ITEMS.register("wash_pan", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS).durability(256)));
         public static void register(IEventBus eventBus) {
             ITEMS.register(eventBus);
         }
