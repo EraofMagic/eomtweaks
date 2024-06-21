@@ -2,6 +2,7 @@ package tocraft.eomtw.events;
 
 import cech12.bucketlib.api.item.UniversalBucketItem;
 import cech12.bucketlib.util.BucketLibUtil;
+import cech12.ceramicbucket.CeramicBucketMod;
 import com.favouriteless.enchanted.common.blockentities.CauldronBlockEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -30,7 +31,6 @@ public class EoMEventHandler {
                     if (fluid == Fluids.WATER) {
                             if (cauldron.addWater(FluidAttributes.BUCKET_VOLUME)) {
                                 event.getWorld().playSound(null, event.getPos(), SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-                                BucketLibUtil.removeFluid(item);
                                 return InteractionResult.SUCCESS;
                             }
                     }
