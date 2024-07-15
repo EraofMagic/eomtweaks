@@ -79,6 +79,11 @@ public class EoMRegistry {
         public static final RegistryObject<Item> LEATHER_STRIPE = ITEMS.register("leather_stripe", () -> new Item(new Item.Properties().tab(RESOURCES)));
         public static final RegistryObject<Item> LEATHER_SHEET = ITEMS.register("leather_sheet", () -> new Item(new Item.Properties().tab(RESOURCES)));
         public static final RegistryObject<Item> BARK_OIL = ITEMS.register("bark_oil", () -> new Item(new Item.Properties().tab(RESOURCES)));
+        public static final RegistryObject<Item> BLIGHTED_OIL = ITEMS.register("blighted_oil", () -> new Item(new Item.Properties().tab(RESOURCES)));
+        public static final RegistryObject<Item> TAINTED_LEATHER = ITEMS.register("tainted_leather", () -> new Item(new Item.Properties().tab(RESOURCES)));
+        public static final RegistryObject<Item> BLESSED_OIL = ITEMS.register("blessed_oil", () -> new Item(new Item.Properties().tab(RESOURCES)));
+        public static final RegistryObject<Item> RUNIC_LEATHER = ITEMS.register("runic_leather", () -> new Item(new Item.Properties().tab(RESOURCES)));
+        public static final RegistryObject<Item> MUNDANCE_BELT = ITEMS.register("Mundane_belt", () -> new Item(new Item.Properties().tab(RESOURCES)));
         public static void register(IEventBus eventBus) {
             ITEMS.register(eventBus);
         }
