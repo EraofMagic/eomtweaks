@@ -1,11 +1,13 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
 plugins {
-    id "dev.architectury.loom" version "1.6-SNAPSHOT"
+    id "dev.architectury.loom" version "1.7-SNAPSHOT"
     id 'net.darkhax.curseforgegradle' version '1.+'
     id "maven-publish"
 }
 
 base {
-    archivesName = project.archives_base_name
+    archivesName = project.mod_id
 }
 
 version = project.mod_version
@@ -17,6 +19,7 @@ loom {
     forge {
         mixinConfigs = ["eomtw.mixins.json"]
     }
+
 }
 
 repositories {
@@ -53,14 +56,12 @@ dependencies {
     modApi("dev.ftb.mods:ftb-chunks-forge:${rootProject.ftb_chunks_version}") { transitive = false }
     modApi("dev.ftb.mods:ftb-library-forge:${rootProject.ftb_library_version}") { transitive = false }
     modApi("dev.ftb.mods:ftb-teams-forge:${rootProject.ftb_teams_version}") { transitive = false }
-    modApi("curse.maven:enchanted-witchcraft-560363:5326920")
-    modApi("curse.maven:patchouli-306770:3846086")
-    modApi("curse.maven:geckolib-388172:4181370")
-    modApi("curse.maven:stateobserver-701213:4793861")
-    modApi("curse.maven:ceramic-bucket-363799:4310257")
-    modApi("curse.maven:bucketlib-560156:4565123")
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.6"))
-    implementation(include("io.github.llamalad7:mixinextras-forge:0.3.6"))
+    modApi("curse.maven:enchanted-witchcraft-560363:5436354")
+    modApi("curse.maven:patchouli-306770:4966125")
+    modApi("curse.maven:geckolib-388172:5675221")
+    modApi("curse.maven:stateobserver-701213:5390510")
+    modApi("curse.maven:ceramic-bucket-363799:4690918")
+    modApi("curse.maven:bucketlib-560156:5674711")
 
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 }
@@ -76,7 +77,7 @@ processResources {
     }
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
     options.release = 17
 }
@@ -87,8 +88,8 @@ java {
 
 jar {
     manifest {
-        attributes(["Specification-Title"     : project.archives_base_name,
-                    "Specification-Vendor"    : project.archives_base_name,
+        attributes(["Specification-Title"     : project.mod_id,
+                    "Specification-Vendor"    : "To_Craft",
                     "Specification-Version"   : project.mod_version,
                     "Implementation-Title"    : project.name,
                     "Implementation-Version"  : "1",
@@ -120,7 +121,7 @@ publishing {
     }
 }
 
-task curseforge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+tasks.register('curseforge', TaskPublishCurseForge) {
     apiToken = System.getenv("CURSEFORGE_TOKEN")
 
     // The main file to upload

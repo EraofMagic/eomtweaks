@@ -1,5 +1,6 @@
 {
   "eomtw.update": "A new version of EoM-Tweaks is available: %s",
+  "eomtw.tab.resources": "Resources",
   "ftbteamsconfig.eomtw": "Advanced EoM Team Properties",
   "ftbteamsconfig.eomtw.break_blocks_blacklist": "Break Blocks Blacklist",
   "ftbteamsconfig.eomtw.break_blocks_whitelist": "Break Blocks Whitelist",
