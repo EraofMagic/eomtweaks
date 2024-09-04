@@ -1,0 +1,4 @@
+// 1.20.1	2024-09-04T18:08:31.021094832	Registries
+5ac9bb4c6409642a28da4944f3f0662a983e2bc2 data/eomtw/forge/biome_modifier/add_tin_ore.json
+8e7934110ecfe5f20a84f9b9d57beb3e722e5401 data/eomtw/worldgen/configured_feature/tin_ore.json
+ddcd2b6e527ea452a6fb1d93546c02e440396772 data/eomtw/worldgen/placed_feature/tim_ore_placed.json
